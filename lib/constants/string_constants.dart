@@ -1,0 +1,1 @@
+const searchString = 'Search for Medicines, Products, Brands and More';
