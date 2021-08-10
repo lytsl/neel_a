@@ -8,14 +8,15 @@ class ProfileModel with ChangeNotifier{
   late ProfileData _profileData ;
   ProfileData get profileData => _profileData;
 
-  bool hasLoggedIn = false;
+  bool _hasLoggedIn = false;
+  bool get hasLoggedIn => _hasLoggedIn;
 
   final Box<ProfileData> box = Hive.box(ProfileData.ID);
 
   ProfileModel(){
     if(box.isEmpty)
       return;
-    hasLoggedIn = true;
+    _hasLoggedIn = true;
     _profileData = box.getAt(0)!;
   }
 
@@ -25,13 +26,19 @@ class ProfileModel with ChangeNotifier{
     else
       box.putAt(0, data);
     _profileData = data;
-    hasLoggedIn = true;
+    _hasLoggedIn = true;
     notifyListeners();
   }
 
   void editProfile(ProfileData data){
     box.putAt(0, data);
     _profileData = data;
+    notifyListeners();
+  }
+
+  Future<void> logout() async {
+    _hasLoggedIn = false;
+    await box.clear();
     notifyListeners();
   }
 

@@ -6,13 +6,16 @@ import 'package:neel_a/data/profile.dart';
 import 'package:neel_a/model/home_model.dart';
 import 'package:neel_a/pages/add_address_page.dart';
 import 'package:neel_a/pages/address_list_page.dart';
+import 'package:neel_a/pages/appointment_list_page.dart';
 import 'package:neel_a/pages/booking_success_page.dart';
 import 'package:neel_a/pages/cart_page.dart';
+import 'package:neel_a/pages/change_password_page.dart';
 import 'package:neel_a/pages/consult_doctor_page.dart';
 import 'package:neel_a/pages/doctor_list.dart';
 import 'package:neel_a/pages/edit_profile_page.dart';
 import 'package:neel_a/pages/filter_page.dart';
 import 'package:neel_a/pages/home_page.dart';
+import 'package:neel_a/pages/order_list_page.dart';
 import 'package:neel_a/pages/patient_details_page.dart';
 import 'package:neel_a/pages/product_list_page.dart';
 import 'package:neel_a/pages/profile_page.dart';
@@ -162,6 +165,24 @@ class MyApp extends StatelessWidget {
                   case BookingSuccessPage.ID:
                     return PageTransition(
                       child: PatientDetailsPage(),
+                      type: PageTransitionType.fade,
+                      duration: navigationDuration,
+                    );
+                  case OrderListPage.ID:
+                    return PageTransition(
+                      child: OrderListPage(),
+                      type: PageTransitionType.fade,
+                      duration: navigationDuration,
+                    );
+                  case AppointmentListPage.ID:
+                    return PageTransition(
+                      child: AppointmentListPage(),
+                      type: PageTransitionType.fade,
+                      duration: navigationDuration,
+                    );
+                  case ChangePasswordPage.ID:
+                    return PageTransition(
+                      child: ChangePasswordPage(),
                       type: PageTransitionType.fade,
                       duration: navigationDuration,
                     );

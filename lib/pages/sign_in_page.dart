@@ -5,10 +5,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neel_a/constants/colors.dart';
 import 'package:neel_a/constants/decorations.dart';
+import 'package:neel_a/data/profile.dart';
+import 'package:neel_a/model/profile_model.dart';
 import 'package:neel_a/pages/home_page.dart';
 import 'package:neel_a/pages/profile_page.dart';
 import 'package:neel_a/utility/functions.dart';
 import 'package:neel_a/widgets/my_text_field.dart';
+import 'package:provider/provider.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({Key? key, required this.number}) : super(key: key);
@@ -251,17 +254,24 @@ class _SignInPageState extends State<SignInPage> {
   }
 
   void onContinue() {
-    if (signingWithPassword &&  password.length == 0) {
+    if (signingWithPassword && password.length == 0) {
       Fun.toast('Password is Empty');
       return;
     }
-    if ( !signingWithPassword &&  otp.length == 0) {
+    if (!signingWithPassword && otp.length == 0) {
       Fun.toast('OTP is Empty');
       return;
     }
-
+    Provider.of<ProfileModel>(context, listen: false).setProfile(
+      ProfileData(
+        number: widget.number,
+        name: 'name',
+        email: 'email',
+      ),
+    );
     //Navigator.pushNamed(context, ProfilePage.ID);
-    Navigator.pushNamedAndRemoveUntil(context, ProfilePage.ID, ModalRoute.withName(HomePage.ID));
+    Navigator.pushNamedAndRemoveUntil(
+        context, ProfilePage.ID, ModalRoute.withName(HomePage.ID));
   }
 
   void onOTPChanged(String value) {}
@@ -353,8 +363,8 @@ class _OTPFieldState extends State<OTPField> {
             ? TextButton(
                 onPressed: startTimer,
                 style: TextButton.styleFrom(
-                    padding: EdgeInsets.zero,
-                    alignment: Alignment.centerRight,
+                  padding: EdgeInsets.zero,
+                  alignment: Alignment.centerRight,
                 ),
                 child: Text(
                   'Resend OTP',
@@ -366,12 +376,12 @@ class _OTPFieldState extends State<OTPField> {
                 ),
               )
             : TextButton(
-          style: TextButton.styleFrom(
-            padding: EdgeInsets.zero,
-            alignment: Alignment.centerRight,
-          ),
-              onPressed: () { },
-              child: Text(
+                style: TextButton.styleFrom(
+                  padding: EdgeInsets.zero,
+                  alignment: Alignment.centerRight,
+                ),
+                onPressed: () {},
+                child: Text(
                   _start.toString(),
                   style: TextStyle(
                     fontSize: 12,
@@ -379,7 +389,7 @@ class _OTPFieldState extends State<OTPField> {
                     color: _accentColor,
                   ),
                 ),
-            ),
+              ),
         border: UnderlineInputBorder(
           borderSide: BorderSide(
             color: _greyColor,
@@ -392,7 +402,7 @@ class _OTPFieldState extends State<OTPField> {
         ),
         isDense: true,
         suffixIconConstraints:
-            BoxConstraints.tightFor(height: widget.textSize12+4),
+            BoxConstraints.tightFor(height: widget.textSize12 + 4),
         contentPadding: EdgeInsets.zero,
       ),
     );

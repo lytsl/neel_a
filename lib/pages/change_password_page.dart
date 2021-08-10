@@ -4,16 +4,16 @@ import 'package:neel_a/pages/consult_doctor_page.dart';
 import 'package:neel_a/utility/functions.dart';
 import 'package:neel_a/widgets/my_container.dart';
 
-class OrderListPage extends StatefulWidget {
-  const OrderListPage({Key? key}) : super(key: key);
+class ChangePasswordPage extends StatefulWidget {
+  const ChangePasswordPage({Key? key}) : super(key: key);
 
-  static const ID = 'OrderListPage';
+  static const ID = 'ChangePasswordPage';
 
   @override
-  _OrderListPageState createState() => _OrderListPageState();
+  _ChangePasswordPageState createState() => _ChangePasswordPageState();
 }
 
-class _OrderListPageState extends State<OrderListPage> {
+class _ChangePasswordPageState extends State<ChangePasswordPage> {
   late bool _isDarkMode;
   late Color _containerColor,
       _greyColor,
@@ -62,7 +62,7 @@ class _OrderListPageState extends State<OrderListPage> {
       elevation: 0,
       titleSpacing: 0,
       title: Text(
-        'Your Orders',
+        'Change Password',
         style: TextStyle(
           color: iconColor,
           fontWeight: FontWeight.bold,
